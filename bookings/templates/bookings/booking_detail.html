@@ -1,0 +1,85 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <h1>Booking Details: {{ booking.booking_number }}</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Booking Information</h5>
+            <p><strong>Loading Port:</strong> {{ booking.loading_port }}</p>
+            <p><strong>Discharge Port:</strong> {{ booking.discharge_port }}</p>
+            <p><strong>Ship Arrival Date:</strong> {{ booking.ship_arrival_date }}</p>
+            <p><strong>Ship Departure Date:</strong> {{ booking.ship_departure_date }}</p>
+        </div>
+    </div>
+
+    <h2>Associated Vehicles</h2>
+    <table class="table table-hover mb-4">
+        <thead>
+            <tr>
+                <th>VIN</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Weight (kg)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in booking.vehicles.all %}
+                <tr>
+                    <td>{{ vehicle.vin }}</td>
+                    <td>{{ vehicle.make }}</td>
+                    <td>{{ vehicle.model }}</td>
+                    <td>{{ vehicle.weight }}</td>
+                    <td>
+                        <form method="post" action="{% url 'disassociate_vehicle' booking.pk vehicle.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Disassociate</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No vehicles associated with this booking.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Available Vehicles</h2>
+    <table class="table table-hover mb-4">
+        <thead>
+            <tr>
+                <th>VIN</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Weight (kg)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in available_vehicles %}
+                <tr>
+                    <td>{{ vehicle.vin }}</td>
+                    <td>{{ vehicle.make }}</td>
+                    <td>{{ vehicle.model }}</td>
+                    <td>{{ vehicle.weight }}</td>
+                    <td>
+                        <form method="post" action="{% url 'associate_vehicle' booking.pk vehicle.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-success">Associate</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No available vehicles.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <a href="{% url 'booking_update' booking.pk %}" class="btn btn-primary">Edit Booking</a>
+        <form method="post" action="{% url 'booking_delete' booking.pk %}" style="display: inline-block;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this booking?');">Delete Booking</button>
+        </form>
+        <a href="{% url 'booking_list' %}" class="btn btn-secondary">Back to Bookings</a>
+    </div>
+{% endblock %}

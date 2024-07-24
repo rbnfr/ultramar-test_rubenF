@@ -1,0 +1,30 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <h1>Bookings</h1>
+    <a href="{% url 'booking_create' %}" class="btn btn-primary mb-3">Create New Booking</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Booking Number</th>
+                <th>Loading Port</th>
+                <th>Discharge Port</th>
+                <th>Ship Arrival Date</th>
+                <th>Ship Departure Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr class="clickable-row" data-href="{% url 'booking_detail' booking.pk %}">
+                    <td>{{ booking.booking_number }}</td>
+                    <td>{{ booking.loading_port }}</td>
+                    <td>{{ booking.discharge_port }}</td>
+                    <td>{{ booking.ship_arrival_date }}</td>
+                    <td>{{ booking.ship_departure_date }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No bookings available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

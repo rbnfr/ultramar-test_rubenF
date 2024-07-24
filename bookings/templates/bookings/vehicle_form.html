@@ -1,0 +1,16 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <h1>{% if form.instance.pk %}Edit Vehicle{% else %}Add Vehicle{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field.errors }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}

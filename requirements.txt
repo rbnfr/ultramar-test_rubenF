@@ -1,8 +1,15 @@
-# BASE
-Django==4.2.11  # https://www.djangoproject.com/
-django-debug-toolbar==4.4.2  # https://github.com/jazzband/django-debug-toolbar
-
-# RECOMMENDATIONS
-# django_tables2==2.7.0  # https://github.com/jieter/django-tables2/
-# XlsxWriter==3.2.0  # https://github.com/jmcnamara/XlsxWriter
-# djangorestframework==3.15.1  # https://github.com/encode/django-rest-framework
+asgiref==3.8.1
+chardet==5.2.0
+diff-match-patch==20230430
+Django==5.0.7
+django-debug-toolbar==4.4.6
+django-import-export==4.1.1
+djangorestframework==3.15.2
+et-xmlfile==1.1.0
+openpyxl==3.1.5
+pillow==10.4.0
+reportlab==4.2.2
+sqlparse==0.5.1
+tablib==3.5.0
+tzdata==2024.1
+xlrd==2.0.1
