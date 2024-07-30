@@ -18,6 +18,8 @@ IMPORT_EXPORT_FORMATS = [XLSX]
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPS_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # import pdb; pdb.set_trace()
 # APPS_DIR = ROOT_DIR.path("main")
