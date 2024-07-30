@@ -151,7 +151,7 @@ STATICFILES_DIRS = [os.path.join(APPS_DIR, "static"),]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",    
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 
@@ -162,4 +162,3 @@ MEDIA_URL = "/media/"
 
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-

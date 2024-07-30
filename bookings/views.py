@@ -16,7 +16,7 @@ BOOKING_FORM_TEMPLATE = 'bookings/booking_form.html'
 VEHICLE_FORM_TEMPLATE = 'bookings/vehicle_form.html'
 
 
-def export_bookings_xls(request):
+def export_bookings_xls():
     try:
         # Import and class creation here to avoid circular import and handle AppRegistryNotReady exception
         from .models import Booking
